@@ -44,7 +44,7 @@ window.addEventListener("keypress", function (e) {
 		if(images.style.width == "50px"){
 			if (shrink.innerText > 0) {
 				images.style.width = "10px";
-				window.setInterval(() => images.style.width = "50px", 7000);
+				window.setTimeout(() => images.style.width = "50px", 7000);
 				shrink.innerText--;
 			}
 		}
