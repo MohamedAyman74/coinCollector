@@ -2,9 +2,12 @@ const coin = document.querySelector("#coin");
 const player = document.querySelector("#player");
 const avatar = document.querySelector("#avatar");
 const redCoin = document.querySelector("#redCoin");
-const images = document.querySelector("img");
+// const images = document.querySelector("img");
+const poisonedText = document.querySelector("#poisoned");
 
 let isPoisoned = false;
+let score = document.querySelector("#score");
+let shrink = document.querySelector("#shrink");
 
 redCoin.style.display = "none";
 
@@ -21,11 +24,9 @@ function isTouching(a, b) {
 }
 player.style.top = "100px";
 player.style.left = "100px";
-images.style.width = "50px";
+avatar.style.width = "50px";
 player.style.width = "50px";
 
-let score = document.querySelector("#score");
-let shrink = document.querySelector("#shrink");
 
 shrink.innerText = 5;
 score.innerText = 0;
@@ -57,10 +58,10 @@ window.addEventListener("keypress", function (e) {
 		horizontal += 50;
 	}
 	else if (e.key === "5") {
-		if (images.style.width == "50px") {
+		if (avatar.style.width == "50px") {
 			if (shrink.innerText > 0) {
-				images.style.width = "10px";
-				window.setTimeout(() => images.style.width = "50px", 7000);
+				avatar.style.width = "10px";
+				window.setTimeout(() => avatar.style.width = "50px", 7000);
 				shrink.innerText--;
 			}
 		}
@@ -94,7 +95,7 @@ const displayRedCoin = () => {
 }
 
 //A7ot red coin lw etakhdet in 5 seconds tena2as points (done)
-//Akhaly el coin leha chance 23% enaha teb2a poisonus (almost done)
+//Akhaly el coin leha chance 23% enaha teb2a poisonus (done)
 //Akhaly enemies tegry warak or add traps (lesa)
 
 const move = (el, am) => {
@@ -131,5 +132,9 @@ const moveCoin = (item) => {
 
 const poisonCoin = () => {
 	isPoisoned = true;
-	setTimeout(() => isPoisoned = false, 10000);
+	poisonedText.style.display = "block";
+	setTimeout(() => {
+		isPoisoned = false;
+		poisonedText.style.display = "none";
+	}, 10000);
 }

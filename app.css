@@ -12,3 +12,22 @@ h1{
 	margin-left: 150%;
 	margin-top: 80%;
 }
+#abilities{
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin-left: 2%;
+}
+#poisoned{
+	text-align: center;
+	/* color: rgba(0, 255, 0, 1); */
+	animation: color-change	1s infinite;
+	font-size: xx-large;
+	font-weight: 800;
+	display: none;
+}
+@keyframes color-change {
+	0% {color: rgba(0, 255, 0, 1); }
+	50% {color: rgba(0, 255, 0, 0.5); }
+	100% {color: rgb(8, 107, 8); }
+}
