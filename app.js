@@ -4,6 +4,8 @@ const avatar = document.querySelector("#avatar");
 const redCoin = document.querySelector("#redCoin");
 const images = document.querySelector("img");
 
+let isPoisoned = false;
+
 redCoin.style.display = "none";
 
 function isTouching(a, b) {
@@ -21,27 +23,41 @@ player.style.top = "100px";
 player.style.left = "100px";
 images.style.width = "50px";
 player.style.width = "50px";
+
 let score = document.querySelector("#score");
 let shrink = document.querySelector("#shrink");
+
 shrink.innerText = 5;
 score.innerText = 0;
 window.addEventListener("keypress", function (e) {
 	let vertical = 0;
 	let horizontal = 0;
 	if (e.key === "ArrowDown" || e.key === "s") {
+		if(isPoisoned)
+		vertical -=50;
+		else
 		vertical += 50;
 	}
 	else if (e.key === "ArrowUp" || e.key === "w") {
+		if(isPoisoned)
+		vertical += 50;
+		else
 		vertical -= 50;
 	}
 	else if (e.key === "ArrowLeft" || e.key === "a") {
+		if(isPoisoned)
+		horizontal += 50;
+		else
 		horizontal -= 50;
 	}
 	else if (e.key === "ArrowRight" || e.key === "d") {
+		if(isPoisoned)
+		horizontal -= 50;
+		else
 		horizontal += 50;
 	}
 	else if (e.key === "5") {
-		if(images.style.width == "50px"){
+		if (images.style.width == "50px") {
 			if (shrink.innerText > 0) {
 				images.style.width = "10px";
 				window.setTimeout(() => images.style.width = "50px", 7000);
@@ -54,9 +70,14 @@ window.addEventListener("keypress", function (e) {
 		moveCoin(coin);
 		score.innerText++;
 		displayRedCoin();
+		const randomNumber = Math.floor(Math.random() * 10) + 1;
+		if(randomNumber < 2.3){
+			poisonCoin();
+		}
 	}
 	if (isTouching(redCoin, avatar)) {
-		moveCoin(redCoin);
+		// moveCoin(redCoin);
+		moveCoin(coin);
 		redCoin.style.display = "none";
 		displayRedCoin();
 		score.innerText -= 5;
@@ -73,14 +94,16 @@ const displayRedCoin = () => {
 }
 
 //A7ot red coin lw etakhdet in 5 seconds tena2as points (done)
+//Akhaly el coin leha chance 23% enaha teb2a poisonus (almost done)
+//Akhaly enemies tegry warak or add traps (lesa)
 
 const move = (el, am) => {
 	const ver = getPos(player.style.top);
 	const hor = getPos(player.style.left);
-	if (ver + el > window.innerHeight -100 || ver + el < -100) {
+	if (ver + el > window.innerHeight - 100 || ver + el < -100) {
 		el = 0;
 	}
-	else if (hor + am > window.innerWidth -100 || hor + am < -100) {
+	else if (hor + am > window.innerWidth - 100 || hor + am < -100) {
 		am = 0;
 	}
 
@@ -104,4 +127,9 @@ const moveCoin = (item) => {
 	// const coin = document.querySelector("#coin");
 	item.style.top = `${height}px`;
 	item.style.left = `${width}px`;
+}
+
+const poisonCoin = () => {
+	isPoisoned = true;
+	setTimeout(() => isPoisoned = false, 10000);
 }
