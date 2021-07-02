@@ -9,8 +9,6 @@ let isPoisoned = false;
 let score = document.querySelector("#score");
 let shrink = document.querySelector("#shrink");
 
-redCoin.style.display = "none";
-
 function isTouching(a, b) {
 	const aRect = a.getBoundingClientRect();
 	const bRect = b.getBoundingClientRect();
@@ -71,13 +69,12 @@ window.addEventListener("keypress", function (e) {
 		moveCoin(coin);
 		score.innerText++;
 		displayRedCoin();
-		const randomNumber = Math.floor(Math.random() * 10) + 1;
-		if(randomNumber < 2.3){
+		const randomNumber = Math.random() * 10;
+		if(randomNumber < 1.5){
 			poisonCoin();
 		}
 	}
 	if (isTouching(redCoin, avatar)) {
-		// moveCoin(redCoin);
 		moveCoin(coin);
 		redCoin.style.display = "none";
 		displayRedCoin();
@@ -90,12 +87,10 @@ const displayRedCoin = () => {
 	const randomNumber = Math.floor(Math.random() * 10) + 1;
 	console.log(randomNumber);
 	if (randomNumber < 4) {
+		moveCoin(redCoin);
 		redCoin.style.display = "block";
 	}
 }
-
-//A7ot red coin lw etakhdet in 5 seconds tena2as points (done)
-//Akhaly el coin leha chance 23% enaha teb2a poisonus (done)
 //Akhaly enemies tegry warak or add traps (lesa)
 
 const move = (el, am) => {

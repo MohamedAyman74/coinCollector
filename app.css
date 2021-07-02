@@ -18,6 +18,9 @@ h1{
 	left: 0;
 	margin-left: 2%;
 }
+#redCoin{
+	display: none;
+}
 #poisoned{
 	text-align: center;
 	/* color: rgba(0, 255, 0, 1); */
