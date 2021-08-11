@@ -27,30 +27,6 @@ player.style.width = "50px";
 
 shrink.innerText = 5;
 score.innerText = 0;
-window.addEventListener("touchmove", function (e) {
-  let x = e.touches[0].clientX;
-  let y = e.touches[0].clientY;
-  let vertical = 0;
-  let x = 0;
-  if (x < player.style.top) vertical += 50;
-  else vertical -= 50;
-  move(vertical, horizontal);
-  if (isTouching(coin, avatar)) {
-    moveCoin(coin);
-    score.innerText++;
-    displayRedCoin();
-    const randomNumber = Math.random() * 10;
-    if (randomNumber < 1.5) {
-      poisonCoin();
-    }
-  }
-  if (isTouching(redCoin, avatar)) {
-    moveCoin(coin);
-    redCoin.style.display = "none";
-    displayRedCoin();
-    score.innerText -= 5;
-  }
-});
 window.addEventListener("keypress", function (e) {
   let vertical = 0;
   let horizontal = 0;
@@ -141,8 +117,3 @@ const poisonCoin = () => {
     poisonedText.style.display = "none";
   }, 10000);
 };
-
-function myFunction(event) {
-  let x = event.touches[0].clientX;
-  let y = event.touches[0].clientY;
-}
