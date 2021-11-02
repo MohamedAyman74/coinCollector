@@ -30,16 +30,16 @@ score.innerText = 0;
 window.addEventListener("keypress", function (e) {
   let vertical = 0;
   let horizontal = 0;
-  if (e.key === "ArrowDown" || e.key === "s") {
+  if (e.key === "ArrowDown" || e.key === "s" || e.key === "S") {
     if (isPoisoned) vertical -= 50;
     else vertical += 50;
-  } else if (e.key === "ArrowUp" || e.key === "w") {
+  } else if (e.key === "ArrowUp" || e.key === "w" || e.key === "W") {
     if (isPoisoned) vertical += 50;
     else vertical -= 50;
-  } else if (e.key === "ArrowLeft" || e.key === "a") {
+  } else if (e.key === "ArrowLeft" || e.key === "a" || e.key === "A") {
     if (isPoisoned) horizontal += 50;
     else horizontal -= 50;
-  } else if (e.key === "ArrowRight" || e.key === "d") {
+  } else if (e.key === "ArrowRight" || e.key === "d" || e.key === "D") {
     if (isPoisoned) horizontal -= 50;
     else horizontal += 50;
   } else if (e.key === "5") {
